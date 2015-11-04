@@ -10,17 +10,23 @@ while count < 5
   last = gets.chomp
   puts "Please enter email"
   email = gets.chomp
+  good_email = false
   while good_email == false
-      unless email.include?"@"
-      last4 = email[-4..-1] 
-        unless last4.include? == ".com"
-        puts "Error please include an @ and .com in your address"
-        email = gets.chomp
-        end
-
-      email = gets.chomp
-      else
+    at = 0
+    com = 0
+    last4 = email[-4..-1]
+      if email.include?"@"
+        at += 1
+        if last4.include?".com"
+          com += 1
+        end 
+      end
+      puts (at + com)
+      if (at + com) == 2
         good_email = true
+      else 
+        puts "Error please make sure you have @ and .com in your email"
+        email = gets.chomp
       end
   end
 
