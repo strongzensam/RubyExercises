@@ -1,6 +1,5 @@
 bank_info = []
 
-good_email = false
 count = 0
 while count < 5
   bank_hash = {}
@@ -10,24 +9,10 @@ while count < 5
   last = gets.chomp
   puts "Please enter email"
   email = gets.chomp
-  good_email = false
-  while good_email == false
-    at = 0
-    com = 0
-    last4 = email[-4..-1]
-      if email.include?"@"
-        at += 1
-        if last4.include?".com"
-          com += 1
-        end 
-      end
-      puts (at + com)
-      if (at + com) == 2
-        good_email = true
-      else 
-        puts "Error please make sure you have @ and .com in your email"
-        email = gets.chomp
-      end
+  while true
+    break if email.include?("@")&&email[-4,4] == ".com"
+    puts "Error please make sure you have @ and .com in your email"
+    email = gets.chomp
   end
 
 
@@ -41,7 +26,6 @@ end
 
 bank_info.each do |info|
   info.each do |key, value|
-
     upper_key = key.upcase
     puts "#{upper_key}: #{value} "
   end
